@@ -1,5 +1,7 @@
 import pycurl
 from io import BytesIO 
+import fileinput
+import sys
 
 b_obj = BytesIO() 
 crl = pycurl.Curl() 
@@ -19,5 +21,10 @@ crl.close()
 # Get the content stored in the BytesIO object (in byte characters) 
 get_body = b_obj.getvalue()
 
+# write data to file and close
+fileOut = open('hopkins_data.csv', "w")
+fileOut.write(get_body.decode('utf8'))
+fileOut.close()
+
 # Decode the bytes stored in get_body to HTML and print the result 
-print('Output of GET request:\n%s' % get_body.decode('utf8')) 
+# print('Output of GET request:\n%s' % get_body.decode('utf8')) 
