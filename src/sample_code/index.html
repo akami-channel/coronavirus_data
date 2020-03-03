@@ -4,18 +4,34 @@
 
 <div id="id01"></div>
 
+
+<p>data here</p>
+
+
 <script>
 var xmlhttp = new XMLHttpRequest();
 var url = "data.JSON";
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+    	// console.log(IsJsonString(this.responseText))
         var myArr = JSON.parse(this.responseText);
+        myFunction(myArr)
         console.log(myArr);
     }
 };
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
+
+function myFunction(arr) {
+    var out = "";
+    var i;
+    for(i = 0; i < arr.length; i++) {
+        out += '<p>' + arr[i].datarow['Province/State'] + '</p>';
+    }
+    document.getElementById("id01").innerHTML = out;
+    console.log(out)
+}
 
 window.addEventListener('load', function() {
     // console.log('All assets are loaded')
