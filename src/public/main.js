@@ -11,6 +11,7 @@ window.addEventListener('load', function() {
     dataString = dataString.slice(0,dataString.length - 3)
     dataString = dataString + "}"
     console.log(IsJsonString(dataString))
+    console.log(dataString)
 })
 
 

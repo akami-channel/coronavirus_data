@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<script type="text/javascript" src="data.js"></script>
+
+
+<div id="id01"></div>
+
+<script>
+// var xmlhttp = new XMLHttpRequest();
+// var url = "data.js";
+
+// xmlhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//         var myArr = JSON.parse(this.responseText);
+//         myFunction(myArr);
+//     }
+// };
+// xmlhttp.open("GET", url, true);
+// xmlhttp.send();
+
+function myFunction(arr) {
+    var out = "";
+    var i;
+    for(i = 0; i < arr.length; i++) {
+        out += '<a href="' + arr[i].url + '">' +
+        arr[i].display + '</a><br>';
+    }
+    document.getElementById("id01").innerHTML = out;
+}
+
+var myArray = [
+{
+"display": "JavaScript Tutorial",
+"url": "https://www.w3schools.com/js/default.asp"
+},
+{
+"display": "HTML Tutorial",
+"url": "https://www.w3schools.com/html/default.asp"
+},
+{
+"display": "CSS Tutorial",
+"url": "https://www.w3schools.com/css/default.asp"
+}
+]
+
+window.addEventListener('load', function() {
+    // console.log('All assets are loaded')
+    // // replace single quotes with double quotes for valid JSON
+    // dataString = dataString.replace(/'/g, '"');
+    // // remove extra ", " at the end
+    // dataString = dataString.slice(0,dataString.length - 3)
+    // dataString = dataString + "}"
+    // console.log(IsJsonString(dataString))
+})
+
+function IsJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+
+</script>
+
+
+
+</body>
+</html>
