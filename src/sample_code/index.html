@@ -2,11 +2,7 @@
 <html>
 <body>
 
-<div id="id01"></div>
-
-
-<p>data here</p>
-
+<div id="data_receiver"></div>
 
 <script>
 var xmlhttp = new XMLHttpRequest();
@@ -14,34 +10,23 @@ var url = "data.JSON";
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-    	// console.log(IsJsonString(this.responseText))
-        var myArr = JSON.parse(this.responseText);
-        myFunction(myArr)
-        console.log(myArr);
+        var parsed_data = JSON.parse(this.responseText);
+        parse_data_and_set_innerHTML_of_data_receiver_div(parsed_data)
+        // console.log(parsed_data);
     }
 };
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
 
-function myFunction(arr) {
+function parse_data_and_set_innerHTML_of_data_receiver_div(arr) {
     var out = "";
     var i;
     for(i = 0; i < arr.length; i++) {
         out += '<p>' + arr[i].datarow['Province/State'] + '</p>';
     }
-    document.getElementById("id01").innerHTML = out;
-    console.log(out)
+    document.getElementById("data_receiver").innerHTML = out;
+    // console.log(out)
 }
-
-window.addEventListener('load', function() {
-    // console.log('All assets are loaded')
-    // // replace single quotes with double quotes for valid JSON
-    // dataString = dataString.replace(/'/g, '"');
-    // // remove extra ", " at the end
-    // dataString = dataString.slice(0,dataString.length - 3)
-    // dataString = dataString + "}"
-    // console.log(IsJsonString(dataString))
-})
 
 function IsJsonString(str) {
     try {
