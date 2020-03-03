@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 
 
@@ -7,7 +6,7 @@ import sys
 import csv
 
 # data_file = open('hopkins_data.csv', "r")
-fileOut = open('file_out.csv', "w")
+fileOut = open('public/data.js', "w")
 
 results = ""
 outputColNum = 0
@@ -20,8 +19,8 @@ with open('hopkins_data.csv', encoding="utf-8-sig") as csvfile:
     # reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC) # change contents to floats
     for row in reader: # each row is a list
     	results += str(row)
-    	if (rowNum == 1):
-    		print(row)
+    	# if (rowNum == 1):
+    	# 	print(row)
     	rowNum += 1
         # for colNum, val in enumerate(row):
         #     # YELLOW DIMENSIONS ARE FROM ROW=3 to ROW=12 ....... and COL=3 to COL=6
