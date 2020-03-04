@@ -4,9 +4,10 @@
 import fileinput
 import sys
 import csv
+import json
 
 # data_file = open('hopkins_data.csv', "r")
-fileOut = open('public/data.js', "w")
+fileOut = open('sample_code/data.JSON', "w")
 
 results = ""
 outputColNum = 0
@@ -14,14 +15,14 @@ outputColNum = 0
 counter = 0
 rowNum = 0
 
-fileOut.write("dataString = \"{")
+fileOut.write("[{")
 
 with open('hopkins_data.csv', encoding="utf-8-sig") as csvfile:
     reader = csv.DictReader(csvfile)
     # reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC) # change contents to floats
     for row in reader: # each row is a list
-        results += "\'datarow" + "\'" + ": "
-        results += str(row)
+        results += "\"datarow" + str(rowNum) + "\"" + ": "
+        results += json.dumps(row)
         results += ", "
         # if (rowNum == 1):
         # 	print(row)
@@ -38,6 +39,8 @@ with open('hopkins_data.csv', encoding="utf-8-sig") as csvfile:
         #     counter += 1
         # rowNum += 1
 
+results = results[0:len(results) - 3]
+results = results + "}}]"
+
 fileOut.write(results)
-fileOut.write("}\";")
 fileOut.write("\n")
