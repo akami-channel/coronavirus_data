@@ -10,9 +10,10 @@ var url = "data.JSON";
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+        console.log(IsJsonString(this.responseText))
         var parsed_data = JSON.parse(this.responseText);
         parse_data_and_set_innerHTML_of_data_receiver_div(parsed_data)
-        // console.log(parsed_data);
+        console.log(parsed_data);
     }
 };
 xmlhttp.open("GET", url, true);
@@ -21,10 +22,10 @@ xmlhttp.send();
 function parse_data_and_set_innerHTML_of_data_receiver_div(arr) {
     var output_html = "";
     var i;
-    output_html += '<p>' + arr[0]['datarow0']['Province/State'] + '</p>';
-    // for(i = 0; i < arr.length; i++) {
-    //     output_html += '<p>' + arr[i]['datarow0']['Province/State'] + '</p>';
-    // }
+    // output_html += '<p>' + arr[0] + '</p>';
+    for(i = 0; i < arr.length; i++) {
+        output_html += '<p>' + arr[i]['Province/State'] + ', ' + arr[i]['Country/Region'] + ': ' + arr[i]['Confirmed'] + '</p>';
+    }
     document.getElementById("data_receiver").innerHTML = output_html;
     console.log(output_html)
 }

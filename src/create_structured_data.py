@@ -15,13 +15,13 @@ outputColNum = 0
 counter = 0
 rowNum = 0
 
-fileOut.write("[{")
+fileOut.write("[")
 
 with open('hopkins_data.csv', encoding="utf-8-sig") as csvfile:
     reader = csv.DictReader(csvfile)
     # reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC) # change contents to floats
     for row in reader: # each row is a list
-        results += "\"datarow" + str(rowNum) + "\"" + ": "
+        # results += "\"datarow" + str(rowNum) + "\"" + ": "
         results += json.dumps(row)
         results += ", "
         # if (rowNum == 1):
@@ -40,7 +40,7 @@ with open('hopkins_data.csv', encoding="utf-8-sig") as csvfile:
         # rowNum += 1
 
 results = results[0:len(results) - 3]
-results = results + "}}]"
+results = results + "}]"
 
 fileOut.write(results)
 fileOut.write("\n")
