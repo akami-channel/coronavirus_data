@@ -24,7 +24,10 @@ function parse_data_and_set_innerHTML_of_data_receiver_div(arr) {
     var i;
     // output_html += '<p>' + arr[0] + '</p>';
     for(i = 0; i < arr.length; i++) {
-        output_html += '<p>' + arr[i]['Province/State'] + ', ' + arr[i]['Country/Region'] + ': ' + arr[i]['Confirmed'] + '</p>';
+        if (!arr[i]['Province/State']) {
+            // output_html += '<p>' + arr[i]['Province/State'] + ', ' + arr[i]['Country/Region'] + ': ' + arr[i]['Confirmed'] + '</p>';
+            output_html += '<p>' + arr[i]['Country/Region'] + ': ' + arr[i]['Confirmed'] + '</p>';
+        }
     }
     document.getElementById("data_receiver").innerHTML = output_html;
     console.log(output_html)
