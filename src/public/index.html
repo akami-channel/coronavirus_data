@@ -22,10 +22,8 @@ xmlhttp.send();
 function parse_data_and_set_innerHTML_of_data_receiver_div(arr) {
     var output_html = "";
     var i;
-    // output_html += '<p>' + arr[0] + '</p>';
     for(i = 0; i < arr.length; i++) {
         if (!arr[i]['Province/State']) {
-            // output_html += '<p>' + arr[i]['Province/State'] + ', ' + arr[i]['Country/Region'] + ': ' + arr[i]['Confirmed'] + '</p>';
             output_html += '<p>' + arr[i]['Country/Region'] + ': ' + arr[i]['Confirmed'] + '</p>';
         }
     }
