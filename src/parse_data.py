@@ -4,7 +4,7 @@ import fileinput
 import sys
 import re
 
-fileOut = open('data.txt', "w")
+fileOut = open('data/data.txt', "w")
 
 with open("data/data.html", 'r', encoding='utf-8') as file:
 	contents = file.read()
