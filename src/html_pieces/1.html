@@ -9,7 +9,12 @@
 var xmlhttp = new XMLHttpRequest();
 var url = "data.JSON";
 
-window.scrollTo(0, 400);
+var d = new Date(); // for now
+d.getHours(); // => 9
+d.getMinutes(); // =>  30
+d.getSeconds(); // => 51
+
+window.scrollTo(0, sin(d.getSeconds / 30.0 - 1.0));
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
