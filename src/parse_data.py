@@ -5,10 +5,10 @@ import sys
 import re
 
 
-with open("../data/data.html", 'r', encoding='utf-8') as file:
+with open("data/data.html", 'r', encoding='utf-8') as file:
 	contents = file.read()
 
-fileOut = open('../data/data.txt', "w")
+fileOut = open('data/data.txt', "w")
 
 lined_contents = contents.split("\n")
 
