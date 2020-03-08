@@ -9,6 +9,7 @@ with open("data/data.html", 'r', encoding='utf-8') as file:
 	contents = file.read()
 
 fileOut = open('data/data.txt', "w")
+fileOut2 = open('public/dataString.js', "w")
 
 lined_contents = contents.split("\n")
 
@@ -28,4 +29,4 @@ pattern = '<div style="font-size:13px; margin-top:10px; padding-bottom:10px'
 string_for_printing = string_for_printing.split(pattern, 1)[0]
 
 fileOut.write(string_for_printing)
-
+fileOut2.write("var dataString = '" + string_for_printing + "';")

@@ -4,25 +4,83 @@
 
 
 <div id="data_receiver"></div>
-
+<script type="text/javascript" src="dataString.js"></script>
 <script>
 var xmlhttp = new XMLHttpRequest();
 var url = "data.JSON";
 
-var d = new Date(); // for now
-d.getHours(); // => 9
-d.getMinutes(); // =>  30
-d.getSeconds(); // => 51
+console.log(dataString)
 
-window.scrollTo(0, Math.sin(d.getSeconds / 30.0 - 1.0));
+// I want there to be some scrolling with time, thus this function
+function windowScroll(){
+    var d = new Date(); // for now
+    d.getHours(); // => 9
+    d.getMinutes(); // =>  30
+    d.getSeconds(); // => 51
 
-// function startTimeoutCycle(){
+    console.log("seconds: ", d.getSeconds())
+    
+    // scrollFactor cannot go below 0.0. View below comments for better understanding
+    var scrollFactor = Math.max(0.0, Math.sin(d.getSeconds() / 60.0) * 1000 - 100);
+    // Varies from 0.0 to 1.0:         Math.sin(d.getSeconds() / 60.0)
+    // Varies from 0.0 to 1000.0:       Math.sin(d.getSeconds() / 60.0) * 1000
+    // Varies from -100.0 to 900.0:    Math.sin(d.getSeconds() / 60.0) * 1000 - 100
+    // Will never be negative,
+    // thus some time is spent
+    // at top, where scroll is 0.0:    Math.max(0.0, Math.sin(d.getSeconds() / 60.0) * 1000 - 100)
 
-// }
+    console.log("scrollFactor: ", scrollFactor)
+    window.scrollTo(0, scrollFactor);
+}
 
 
 
-// setTimeout(function(){ alert("Hello"); }, 3000);
+// Loop jumps between timeOutCyclePart1 and timeOutCyclePart2
+
+function timeOutCyclePart1(){
+    setTimeout(function(){
+        console.log("Hello 1");
+        timeOutCyclePart2();
+    }, 9000);
+}
+
+function timeOutCyclePart2(){
+    setTimeout(function(){
+        console.log("Hello 2");
+        timeOutCyclePart1();
+        windowScroll();
+    }, 1000);
+}
+timeOutCyclePart1();
+
+
+var total_infected = document.querySelector(".total_row").innerHTML;
+console.log(total_infected)
+
+total_infected = total_infected.substring(total_infected.indexOf('Total:</strong></td> <td>') + 25, total_infected.indexOf('</td> <!--<td>100%'));
+console.log(total_infected)
+document.getElementById("total_infected").innerHTML = total_infected;
+
+
+var china = dataString;
+china = china.substring(china.indexOf('China </td> <td style="font-weight: bold; text-align:right">') + 60, china.indexOf('</td> <!--<td style="font-weight: bold; text-align:right">'));
+console.log("china: ", china)
+document.getElementById("china").innerHTML = china;
+
+var italy = dataString;
+italy = italy.substring(italy.indexOf('Italy </td> <td style="font-weight: bold; text-align:right">') + 60, italy.indexOf('</td> <!--<td style="font-weight: bold; text-align:right">', 1773));
+console.log("italy: ", italy)
+document.getElementById("italy").innerHTML = italy;
+
+var sk = dataString;
+sk = sk.substring(sk.indexOf('S. Korea </td> <td style="font-weight: bold; text-align:right">') + 63, sk.indexOf('</td> <!--<td style="font-weight: bold; text-align:right">', 2659));
+console.log("sk: ", sk)
+document.getElementById("sk").innerHTML = sk;
+
+var iran = dataString;
+iran = iran.substring(iran.indexOf('Iran </td> <td style="font-weight: bold; text-align:right">') + 59, iran.indexOf('</td> <!--<td style="font-weight: bold; text-align:right">', 3542));
+console.log("iran: ", iran)
+document.getElementById("iran").innerHTML = iran;
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
