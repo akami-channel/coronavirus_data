@@ -1,0 +1,50 @@
+
+</div>
+</section>
+
+
+<div id="data_receiver"></div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "data.JSON";
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        console.log(IsJsonString(this.responseText))
+        var parsed_data = JSON.parse(this.responseText);
+        parse_data_and_set_innerHTML_of_data_receiver_div(parsed_data)
+        console.log(parsed_data);
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function parse_data_and_set_innerHTML_of_data_receiver_div(arr) {
+    var output_html = "";
+    var i;
+    for(i = 0; i < arr.length; i++) {
+        if (!arr[i]['Province/State']) {
+            output_html += '<p>' + arr[i]['Country/Region'] + ': ' + arr[i]['Confirmed'] + '</p>';
+        }
+    }
+    document.getElementById("data_receiver").innerHTML = output_html;
+    console.log(output_html)
+}
+
+function IsJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+
+</script>
+
+
+
+</body>
+</html>
