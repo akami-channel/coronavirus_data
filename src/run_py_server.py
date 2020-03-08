@@ -1,5 +1,9 @@
 #!/bin/python
 import http.server
+import os
+
+web_dir = os.path.join(os.path.dirname(__file__), 'public')
+os.chdir(web_dir)
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
