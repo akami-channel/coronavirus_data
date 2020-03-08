@@ -9,6 +9,8 @@
 var xmlhttp = new XMLHttpRequest();
 var url = "data.JSON";
 
+window.scrollTo(0, 400);
+
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         console.log(IsJsonString(this.responseText))
